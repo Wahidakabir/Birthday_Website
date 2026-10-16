@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Bhaiya!</title>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="birthday-card">
+        <div class="eyebrow">CELEBRATING YOU</div>
+        <h1>Happy Birthday</h1>
+        <h2 id="brother-greeting">Bhaiya</h2>
+
+        <div class="cake">
+            <div class="candle" id="candle">
+                <div class="flame" id="flame"></div>
+            </div>
+            <div class="top-layer">Make a Wish!</div>
+            <div class="bottom-layer"></div>
+        </div>
+
+        <button id="blow-button">Blow out candle</button>
+
+        <p class="message" id="birthday-message" style="display: none;">
+            Wishing you the happiest birthday filled with joy, success, and all things wonderful! Thank you for always being so supportive.
+        </p>
+
+        <!-- Envelope Section -->
+        <div class="envelope-container" id="envelope-container" style="display: none;">
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <span class="envelope-text">💌 Open Your Memories</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="office-quote">"It is your birthday." 🥳</div>
+        <div class="signature">With love, from your sister</div>
+    </div>
+
+    <!-- Picture Gallery Modal / Overlay -->
+    <div class="gallery-modal" id="gallery-modal" style="display: none;">
+        <div class="gallery-content">
+            <button class="close-gallery" id="close-gallery">&times;</button>
+            <div class="photo-frame">
+                <img id="gallery-img" src="" alt="Memory Photo">
+                <div class="photo-caption" id="photo-caption"></div>
+            </div>
+            <div class="gallery-nav">
+                <button id="prev-photo">Previous</button>
+                <span id="photo-counter">1 / 10</span>
+                <button id="next-photo">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
