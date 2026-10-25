@@ -6,43 +6,143 @@
     <title>Happy Birthday Bhaiya!</title>
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Cozy Coffeehouse Fonts: Fraunces (headings), Nunito (body), Caveat (handwriting) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="birthday-card">
+    <!-- Retro TV Scanline & Cinematic Studio Backdrop Overlay -->
+    <div class="tv-scanlines"></div>
+
+    <!-- Glowing Ambient Orbs & Neon Particles -->
+    <div class="neon-bg-particles">
+        <div class="neon-orb orb-1"></div>
+        <div class="neon-orb orb-2"></div>
+        <div class="neon-particle" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+        <div class="neon-particle" style="top: 75%; left: 20%; animation-delay: 2s;"></div>
+        <div class="neon-particle" style="top: 30%; right: 18%; animation-delay: 1s;"></div>
+        <div class="neon-particle" style="top: 80%; right: 22%; animation-delay: 3s;"></div>
+        <div class="neon-particle" style="top: 10%; right: 40%; animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- PAGE 1: Sitcom invitation -->
+    <div class="app-screen" id="intro-screen">
+        <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
+        <p class="eyebrow">A CENTRAL PERK & DUNDER MIFFLIN SPECIAL</p>
+        <h1>Let's Start with Something You Love...</h1>
+        <h2>But How Well Do You Know Them?</h2>
+        <p>
+            Three sitcoms. A few clues. One special surprise.
+            Let's see if you're ready!
+        </p>
+        <button id="start-button">Let's Find Out</button>
+        <div class="tv-power-led" title="TV Power On"></div>
+    </div>
+
+    <!-- PAGE 2: Sitcom quiz -->
+    <div class="app-screen" id="quiz-screen" style="display: none;">
+        <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
+        
+        <!-- Dynamic Quiz Icon Badge -->
+        <img id="quiz-icon" src="" alt="Quiz Badge" style="width: 80px; height: 80px; margin-bottom: 12px; border: 3px solid #fff9ee; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px #c98b4a, 0 8px 16px rgba(60, 30, 10, 0.3); background: #f0dcc0; display: none;">
+
+        <p class="eyebrow" id="show-name">THE OFFICE</p>
+        <p id="question-counter" style="color: #8a6a52; font-size: 14px; font-weight: 700; margin-bottom: 8px;">Question 1 of 6</p>
+        <h2 id="question-text">
+            Your first clue will appear here.
+        </h2>
+        <input
+            type="text"
+            id="answer-input"
+            placeholder="Type your answer..."
+            autocomplete="off"
+        >
+        <div style="display: flex; gap: 12px; justify-content: center;">
+            <button id="prev-answer" class="btn-secondary-custom">Back</button>
+            <button id="submit-answer">Submit Answer</button>
+        </div>
+        <p id="feedback-message"></p>
+        <div class="tv-power-led"></div>
+    </div>
+
+    <!-- PAGE 3: Abir's Pizza Run Arcade Screen -->
+    <div class="app-screen" id="arcade-screen" style="display: none;">
+        <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
+        <div class="eyebrow">FRIENDS & CENTRAL PERK BONUS ROUND</div>
+        <h1>Abir's Pizza Run!</h1>
+        <h2 id="arcade-status">Use Arrow Keys to help Abir collect 10 slices of Pizza!</h2>
+
+        <!-- Arcade Canvas Cabinet -->
+        <div class="arcade-cabinet">
+            <canvas id="pacman-canvas" width="280" height="280"></canvas>
+            <div class="arcade-score">Pizza Slices Collected: <span id="p-score">0</span> / 10</div>
+        </div>
+        <div class="tv-power-led"></div>
+    </div>
+
+    <!-- PAGE 4: Cake & Candle Screen -->
+    <div class="app-screen" id="cake-screen" style="display: none;">
+        <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
         <div class="eyebrow">CELEBRATING YOU</div>
-        <h1>Happy Birthday</h1>
-        <h2 id="brother-greeting">Bhaiya</h2>
+        <h1>Make a Wish!</h1>
+        <h2>Bhaiya</h2>
 
         <div class="cake">
             <div class="candle" id="candle">
                 <div class="flame" id="flame"></div>
             </div>
-            <div class="top-layer">Make a Wish!</div>
+            <div class="top-layer">Blow out the candle</div>
             <div class="bottom-layer"></div>
         </div>
 
         <button id="blow-button">Blow out candle</button>
+        <p id="mic-instruction" style="font-size: 14px; color: #8a6a52; margin-top: 12px; font-weight: 700;">
+            🎤 (Or just blow into your computer microphone!)
+        </p>
+        <div class="tv-power-led"></div>
+    </div>
 
-        <p class="message" id="birthday-message" style="display: none;">
-            Wishing you the happiest birthday filled with joy, success, and all things wonderful! Thank you for always being so supportive.
+    <!-- PAGE 5: Envelope Page -->
+    <div class="app-screen" id="envelope-screen" style="display: none;">
+        <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
+        <div class="eyebrow">HAPPY BIRTHDAY BHAIYA</div>
+        <h1>Your Special Surprise</h1>
+        <p class="message">
+            Wishing you the happiest birthday filled with joy, success, and all things wonderful! Thank you for always being so supportive and brilliant.
         </p>
 
-        <!-- Envelope Section -->
-        <div class="envelope-container" id="envelope-container" style="display: none;">
+        <!-- Premium Envelope Section with Interactive Wax Seal -->
+        <div class="envelope-container" id="envelope-container">
             <div class="envelope" id="envelope">
                 <div class="envelope-flap"></div>
-                <div class="envelope-body">
-                    <span class="envelope-text">💌 Open Your Memories</span>
+                <div class="envelope-pocket"></div>
+                <div class="wax-seal" id="wax-seal" title="Click to break the seal!">👑</div>
+                <div class="envelope-letter" id="envelope-letter">
+                    <span style="font-size: 24px;">📸</span>
+                    <span style="font-weight: 800; color: #5b3a27;">Open Your Memories</span>
+                    <span style="font-size: 12px; color: #8a6a52; font-weight: 700;">Break seal & click to view</span>
                 </div>
             </div>
         </div>
 
-        <div class="office-quote">"It is your birthday." 🥳</div>
+        <!-- Clickable Dwight Quote Easter Egg -->
+        <div class="office-quote" id="dwight-quote" style="margin-top: 25px; cursor: pointer;" title="Click for Dwight's wisdom!">"It is your birthday." 🥳</div>
         <div class="signature">With love, from your sister</div>
+        <div class="tv-power-led"></div>
     </div>
 
-    <!-- Picture Gallery Modal / Overlay -->
+    <!-- Audio Elements -->
+    <audio id="bg-song" src="audio/photograph.mp3" preload="auto"></audio>
+    <audio id="hbd-audio" src="audio/hbd.mp3" preload="auto"></audio>
+    <audio id="wrong-audio" src="audio/michael-no.mp3" preload="auto"></audio>
+    <audio id="correct-audio" src="audio/ross-pivot.mp3" preload="auto"></audio>
+    <audio id="wait-audio" src="audio/wait-for-it.mp3" preload="auto"></audio>
+    <audio id="crack-audio" src="audio/crack.mp3" preload="auto"></audio>
+    <audio id="dwight-audio" src="audio/statement-of-fact.mp3" preload="auto"></audio>
+
+    <!-- Picture Gallery Modal / Overlay (Polaroid Aesthetic) -->
     <div class="gallery-modal" id="gallery-modal" style="display: none;">
         <div class="gallery-content">
             <button class="close-gallery" id="close-gallery">&times;</button>
@@ -54,6 +154,42 @@
                 <button id="prev-photo">Previous</button>
                 <span id="photo-counter">1 / 10</span>
                 <button id="next-photo">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yellow Frame Transition Overlay (Friends Aesthetic) -->
+    <div class="yellow-frame-overlay" id="frame-transition-overlay" style="display: none;">
+        <div class="expanding-frame" id="expanding-frame"></div>
+    </div>
+
+    <!-- Final Letter Modal with Typewriter Container -->
+    <div class="letter-modal" id="letter-modal" style="display: none;">
+        <div class="letter-content">
+            <button class="close-letter" id="close-letter">&times;</button>
+            <h2 style="color: #bf4f17;">A Special Note For You, Bhaiya</h2>
+            <div class="letter-body-text" id="letter-body-container">
+                <!-- Typewriter text inserted dynamically -->
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button id="restart-experience" class="btn-secondary-custom">Restart Experience ↺</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Wishes Modal Overlay -->
+    <div class="video-modal" id="video-modal" style="display: none;">
+        <div class="video-content">
+            <h2 style="color: #bf4f17;">Everyone Wishes You a Happy Birthday! 🎥</h2>
+            <button class="close-video" id="close-video">&times;</button>
+            <div class="video-container">
+                <video id="wishes-video" controls>
+                    <source src="videos/wishes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="restart-from-video" class="btn-primary-custom">Restart Experience ↺</button>
             </div>
         </div>
     </div>
