@@ -6,10 +6,10 @@
     <title>Happy Birthday Bhaiya!</title>
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Cozy Coffeehouse Fonts: Fraunces (headings), Nunito (body), Caveat (handwriting) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- The Office fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@500;700&family=Courier+Prime:wght@400;700&family=Lora:ital,wght@0,500;0,700;1,500&family=Nunito+Sans:wght@400;600;700;800&family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -44,12 +44,14 @@
     <!-- PAGE 2: Sitcom quiz -->
     <div class="app-screen" id="quiz-screen" style="display: none;">
         <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
+        <!-- Signal lamp: red = rejected, green = approved -->
+        <div class="signal-lamp" aria-hidden="true"><i class="bulb-red"></i><i class="bulb-green"></i></div>
         
         <!-- Dynamic Quiz Icon Badge -->
-        <img id="quiz-icon" src="" alt="Quiz Badge" style="width: 80px; height: 80px; margin-bottom: 12px; border: 3px solid #fff9ee; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px #c98b4a, 0 8px 16px rgba(60, 30, 10, 0.3); background: #f0dcc0; display: none;">
+        <img id="quiz-icon" src="" alt="Quiz Badge" style="width: 80px; height: 80px; margin-bottom: 12px; border: 3px solid #ffffff; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #f4b72c, 0 8px 16px rgba(20, 40, 64, 0.25); background: #e6eaee; display: none;">
 
         <p class="eyebrow" id="show-name">THE OFFICE</p>
-        <p id="question-counter" style="color: #8a6a52; font-size: 14px; font-weight: 700; margin-bottom: 8px;">Question 1 of 6</p>
+        <p id="question-counter" style="color: #6b7684; font-size: 14px; font-weight: 700; margin-bottom: 8px;">Question 1 of 6</p>
         <h2 id="question-text">
             Your first clue will appear here.
         </h2>
@@ -70,14 +72,14 @@
     <!-- PAGE 3: Abir's Pizza Run Arcade Screen -->
     <div class="app-screen" id="arcade-screen" style="display: none;">
         <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
-        <div class="eyebrow">FRIENDS & CENTRAL PERK BONUS ROUND</div>
-        <h1>Abir's Pizza Run!</h1>
+        <div class="eyebrow">I'll be there for you!</div>
+        <h1>Abir's cake Run!</h1>
         <h2 id="arcade-status">Use Arrow Keys to help Abir collect 10 slices of Pizza!</h2>
 
         <!-- Arcade Canvas Cabinet -->
         <div class="arcade-cabinet">
             <canvas id="pacman-canvas" width="280" height="280"></canvas>
-            <div class="arcade-score">Pizza Slices Collected: <span id="p-score">0</span> / 10</div>
+            <div class="arcade-score">Cake Slices Collected: <span id="p-score">0</span> / 10</div>
         </div>
         <div class="tv-power-led"></div>
     </div>
@@ -98,7 +100,7 @@
         </div>
 
         <button id="blow-button">Blow out candle</button>
-        <p id="mic-instruction" style="font-size: 14px; color: #8a6a52; margin-top: 12px; font-weight: 700;">
+        <p id="mic-instruction" style="font-size: 14px; color: #6b7684; margin-top: 12px; font-weight: 700;">
             🎤 (Or just blow into your computer microphone!)
         </p>
         <div class="tv-power-led"></div>
@@ -108,9 +110,9 @@
     <div class="app-screen" id="envelope-screen" style="display: none;">
         <div class="sitcom-dots-bar"><span></span><span></span><span></span><span></span></div>
         <div class="eyebrow">HAPPY BIRTHDAY BHAIYA</div>
-        <h1>Your Special Surprise</h1>
+        <h1>The year where not giving a wallet </h1>
         <p class="message">
-            Wishing you the happiest birthday filled with joy, success, and all things wonderful! Thank you for always being so supportive and brilliant.
+            Wishing you the happiest birthday. I am not able to give you anything in person this year, but I hope this little interactive experience brings a smile to your face and reminds you of all the fun times we've shared. Here's to many more birthdays together!
         </p>
 
         <!-- Premium Envelope Section with Interactive Wax Seal -->
@@ -121,8 +123,8 @@
                 <div class="wax-seal" id="wax-seal" title="Click to break the seal!">👑</div>
                 <div class="envelope-letter" id="envelope-letter">
                     <span style="font-size: 24px;">📸</span>
-                    <span style="font-weight: 800; color: #5b3a27;">Open Your Memories</span>
-                    <span style="font-size: 12px; color: #8a6a52; font-weight: 700;">Break seal & click to view</span>
+                    <span style="font-weight: 800; color: #1f3a5a;">Open Your Memories</span>
+                    <span style="font-size: 12px; color: #6b7684; font-weight: 700;">Break seal & click to view</span>
                 </div>
             </div>
         </div>
@@ -134,6 +136,7 @@
     </div>
 
     <!-- Audio Elements -->
+    <audio id="arcade-audio" src="audio/arcade-bg.mp3" loop preload="auto"></audio>
     <audio id="bg-song" src="audio/photograph.mp3" preload="auto"></audio>
     <audio id="hbd-audio" src="audio/hbd.mp3" preload="auto"></audio>
     <audio id="wrong-audio" src="audio/michael-no.mp3" preload="auto"></audio>
@@ -167,7 +170,7 @@
     <div class="letter-modal" id="letter-modal" style="display: none;">
         <div class="letter-content">
             <button class="close-letter" id="close-letter">&times;</button>
-            <h2 style="color: #bf4f17;">A Special Note For You, Bhaiya</h2>
+            <h2>A letter from me to you-</h2>
             <div class="letter-body-text" id="letter-body-container">
                 <!-- Typewriter text inserted dynamically -->
             </div>
@@ -180,7 +183,7 @@
     <!-- Video Wishes Modal Overlay -->
     <div class="video-modal" id="video-modal" style="display: none;">
         <div class="video-content">
-            <h2 style="color: #bf4f17;">Everyone Wishes You a Happy Birthday! 🎥</h2>
+            <h2>Something a bit more to remind you that no matter how far we all are we will be always there for you!</h2>
             <button class="close-video" id="close-video">&times;</button>
             <div class="video-container">
                 <video id="wishes-video" controls>

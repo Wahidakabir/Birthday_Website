@@ -17,37 +17,43 @@ const questions = [
         show: "THE OFFICE",
         text: "What is the name of Dwight Schrute's cousin who runs a beet farm and bed & breakfast with him?",
         answers: ["mose", "moshe", "cousin mose"],
-        icon: "images/icon1.png"
+        icon: "images/icon1.png",
+        sound: "audio/correct1.mp3"
     },
     {
         show: "THE OFFICE",
         text: "Finish Jim Halpert's famous prank: Putting Dwight's personal items inside a green _________.",
         answers: ["jello", "jell-o"],
-        icon: "images/icon2.jpg"
+        icon: "images/icon2.jpg",
+        sound: "audio/correct2.mp3"
     },
     {
         show: "FRIENDS",
         text: "What is the name of Joey Tribbiani's beloved penguin plush toy?",
         answers: ["hugsy"],
-        icon: "images/icon3.jpg"
+        icon: "images/icon3.jpg",
+        sound: "audio/correct3.mp3"
     },
     {
         show: "FRIENDS",
         text: "Complete Ross's famous shout: 'Pivot! Pivot! PIVOT! Shut up, shut up, ______!'",
         answers: ["shut up"],
-        icon: "images/icon4.jpg"
+        icon: "images/icon4.jpg",
+        sound: "audio/correct4.mp3"
     },
     {
         show: "HOW I MET YOUR MOTHER",
         text: "What is the name of Barney's legendary book of dating plays?",
         answers: ["the playbook", "playbook", "the play book"],
-        icon: "images/icon5.jpg"
+        icon: "images/icon5.jpg",
+        sound: "audio/correct5.mp3"
     },
     {
         show: "HOW I MET YOUR MOTHER",
         text: "What musical instrument does Ted famously steal for Robin?",
         answers: ["french horn", "blue french horn"],
-        icon: "images/icon6.jpg"
+        icon: "images/icon6.jpg",
+        sound: "audio/correct6.mp3"
     }
 ];
 
@@ -69,24 +75,31 @@ const funnyReplies = [
 
 // PHOTO MEMORY GALLERY
 const photos = [
-    { src: "images/photo1.jpg", caption: "Our favorite memories together! 🌟" },
-    { src: "images/photo2.jpg", caption: "Celebrating your special day year after year 🎉" },
-    { src: "images/photo3.jpg", caption: "The best older brother in the world 💙" },
-    { src: "images/photo4.jpg", caption: "Adventures and endless laughter ✨" },
-    { src: "images/photo5.jpg", caption: "Always there with support and guidance 🤝" },
-    { src: "images/photo6.jpg", caption: "Unforgettable moments and inside jokes 😂" },
-    { src: "images/photo7.jpg", caption: "Cheers to 22 amazing years! 🎂" },
-    { src: "images/photo8.jpg", caption: "Making the best out of every single day 🚀" },
-    { src: "images/photo9.jpg", caption: "So grateful for all our memories together 🌸" },
-    { src: "images/photo10.jpg", caption: "Happy Birthday Bhaiya! We love you! ❤️" }
+    { src: "images/photo1.jpg", caption: " " },
+    { src: "images/photo2.jpg", caption:" " },
+    { src: "images/photo3.jpg", caption: "" },
+    { src: "images/photo4.jpg", caption: "" },
+    { src: "images/photo5.jpg", caption: "" },
+    { src: "images/photo6.jpg", caption: "" },
+    { src: "images/photo7.jpg", caption: "" },
+    { src: "images/photo8.jpg", caption: "" },
+    { src: "images/photo9.jpg", caption: "" },
+    { src: "images/photo10.jpg", caption: "" }
 ];
 
-// LETTER PARAGRAPHS
+// TYPEWRITER LETTER PARAGRAPHS (YOUR CUSTOM LETTER)
 const letterParagraphs = [
     "Dear Bhaiya,",
-    "From all our late-night sitcom rewatches (The Office, Friends, and HIMYM) to your constant guidance, you mean the absolute world to me. You are an incredible older brother and a brilliant computer science mind.",
-    "May this year bring you closer to all your dreams—whether it's conquering advanced algorithms, building full-stack projects like Pawnion, or stepping toward your Ph.D. goals in the United States!",
-    "Happy 22nd Birthday! 💙🎂",
+    "HAPPY BIRTHDAY!!",
+    "This year is a little different for all of us. Last year, on your birthday, you wished that we could all be together on your birthday. Well, not physically, but virtually, we are all together! In Shaa Allah, we will always stay like this, ALWAYS & FOREVER.",
+    "You know, you’ve celebrated nine birthdays without me being there. Ever since I was old enough to understand what birthdays meant, I’ve celebrated them with you. That’s why this one hits differently.",
+    "I really miss you. I never thought home would feel this empty without your irritating existence. Please come home this year. I really want to hug you.",
+    "I tried to do something different this time, and I also wanted to flex that you have a coder sister now. I hope it made you happy.",
+    "You are the best brother I could ever ask for. I know you will always be by my side, and that gives me the strength to face this world. Over the years, you’ve become my Ross, and I’m like Monica. Just like them, no matter what happens, we’ll always have each other. And from my side, I promise you this: you will always find me by your side, no matter what.",
+    "Happy birthday once again! I hope you get everything you dream of and everything you pray for. May Allah bless you with endless happiness, success, and all the beautiful things you deserve.",
+    "(Btw, bacha kale bolchila engineer hoile amake remote-control gari baniye diba. Thak, ami-i engineer hoye tomake ekta gift baniye dilam!)",
+    "Yours,",
+    "Dekhte innocent, but shoytan rupi bon.",
     "Barney: Wait for it..."
 ];
 
@@ -106,6 +119,38 @@ const submitAnswerBtn = document.getElementById("submit-answer");
 const prevAnswerBtn = document.getElementById("prev-answer");
 const feedbackMessage = document.getElementById("feedback-message");
 const quizIconImg = document.getElementById("quiz-icon");
+
+// APPROVED / REJECTED STAMP + GREEN / RED SCREEN LIGHT
+const statusLight = document.createElement("div");
+statusLight.className = "status-light";
+document.body.appendChild(statusLight);
+
+function flashLight(color) {
+    statusLight.classList.remove("green", "red");
+    void statusLight.offsetWidth; // restart animation
+    statusLight.classList.add(color);
+}
+
+function setQuizResult(state) {
+    quizScreen.classList.remove("result-correct", "result-wrong");
+    void quizScreen.offsetWidth; // restart stamp animation
+    if (state === "correct") quizScreen.classList.add("result-correct");
+    if (state === "wrong") quizScreen.classList.add("result-wrong");
+}
+
+function shakeQuizCard() {
+    quizScreen.animate(
+        [
+            { transform: "translateX(0)" },
+            { transform: "translateX(-9px)" },
+            { transform: "translateX(9px)" },
+            { transform: "translateX(-5px)" },
+            { transform: "translateX(5px)" },
+            { transform: "translateX(0)" }
+        ],
+        { duration: 420, easing: "ease-in-out" }
+    );
+}
 
 const flame = document.getElementById("flame");
 const blowButton = document.getElementById("blow-button");
@@ -134,6 +179,7 @@ const wishesVideo = document.getElementById("wishes-video");
 const restartFromVideoBtn = document.getElementById("restart-from-video");
 
 // AUDIO ELEMENTS
+const arcadeAudio = document.getElementById('arcade-audio');
 const wrongAudio = document.getElementById('wrong-audio');
 const correctAudio = document.getElementById('correct-audio');
 const hbdAudio = document.getElementById('hbd-audio'); 
@@ -149,6 +195,23 @@ function playSitcomSound(type) {
         wrongAudio.currentTime = 0;
         wrongAudio.play().catch(err => console.log("Audio play blocked:", err));
     }
+}
+
+// A DIFFERENT "CORRECT" SOUND FOR EACH QUESTION
+const questionSounds = questions.map(q => {
+    const a = new Audio(q.sound);
+    a.preload = "auto";
+    return a;
+});
+
+function playQuestionCorrectSound(index) {
+    const a = questionSounds[index];
+    if (!a) {
+        playSitcomSound('correct');
+        return;
+    }
+    a.currentTime = 0;
+    a.play().catch(() => playSitcomSound('correct'));
 }
 
 // RESTORE PROGRESS ON PAGE LOAD
@@ -209,6 +272,8 @@ if (submitAnswerBtn) {
 }
 
 if (answerInput) {
+    answerInput.addEventListener("input", () => setQuizResult(null));
+
     answerInput.addEventListener("keydown", event => {
         if (event.key === "Enter") {
             checkAnswer();
@@ -234,6 +299,7 @@ if (prevAnswerBtn) {
 }
 
 function loadQuestion() {
+    setQuizResult(null);
     feedbackMessage.textContent = "";
     answerInput.value = "";
     answerInput.disabled = false;
@@ -289,15 +355,26 @@ function checkAnswer() {
     if (passwordStage) {
         if (userAns === normalizeAnswer(secretPassword)) {
             playSitcomSound('correct');
-            localStorage.setItem("birthday_screen", "arcade");
+            setQuizResult('correct');
+            flashLight('green');
+            feedbackMessage.textContent = "Access granted! Loading the bonus round...";
+            submitAnswerBtn.disabled = true;
+            answerInput.disabled = true;
 
-            quizScreen.style.display = "none";
-            arcadeScreen.style.display = "block";
+            setTimeout(() => {
+                localStorage.setItem("birthday_screen", "arcade");
 
-            window.scrollTo(0, 0);
-            initPacmanGame();
+                quizScreen.style.display = "none";
+                arcadeScreen.style.display = "block";
+
+                window.scrollTo(0, 0);
+                initPacmanGame();
+            }, 1300);
         } else {
             playSitcomSound('wrong');
+            setQuizResult('wrong');
+            flashLight('red');
+            shakeQuizCard();
             feedbackMessage.textContent = "Wrong password! Your birthday surprise is playing hard to get. Try again!";
             answerInput.value = "";
             answerInput.focus();
@@ -310,7 +387,9 @@ function checkAnswer() {
     const isCorrect = q.answers.some(answer => userAns === normalizeAnswer(answer));
 
     if (isCorrect) {
-        playSitcomSound('correct');
+        playQuestionCorrectSound(currentQuestionIndex);
+        setQuizResult('correct');
+        flashLight('green');
         feedbackMessage.textContent = "Correct! Challenge accepted! 🎉";
 
         submitAnswerBtn.disabled = true;
@@ -323,6 +402,9 @@ function checkAnswer() {
         }, 1500);
     } else {
         playSitcomSound('wrong');
+        setQuizResult('wrong');
+        flashLight('red');
+        shakeQuizCard();
         const randomIndex = Math.floor(Math.random() * funnyReplies.length);
         feedbackMessage.textContent = funnyReplies[randomIndex];
         answerInput.value = "";
@@ -330,7 +412,7 @@ function checkAnswer() {
     }
 }
 
-// JOEY'S PIZZA RUN ARCADE GAME & KONAMI CHEAT
+// ABIR'S CAKE RUN ARCADE GAME & KONAMI CHEAT
 const canvas = document.getElementById("pacman-canvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
 const scoreEl = document.getElementById("p-score");
@@ -352,8 +434,12 @@ window.addEventListener('keydown', (e) => {
             if (konamiIndex === konamiCode.length) {
                 pizzaScore = 10;
                 if (scoreEl) scoreEl.textContent = pizzaScore;
-                if (arcadeStatus) arcadeStatus.textContent = "🎉 KONAMI CHEAT UNLOCKED! Joey doesn't share food!";
+                if (arcadeStatus) arcadeStatus.textContent = "🎉 KONAMI CHEAT UNLOCKED! Abir doesn't share cake!";
                 clearInterval(gameInterval);
+
+                if (arcadeAudio) {
+                    arcadeAudio.pause();
+                }
                 
                 setTimeout(() => {
                     arcadeScreen.style.display = "none";
@@ -377,7 +463,12 @@ function initPacmanGame() {
     joey.y = 40;
     joey.dx = 0;
     joey.dy = 0;
-    if (arcadeStatus) arcadeStatus.textContent = "Use Arrow Keys to help Joey collect 10 slices of Pizza!";
+    if (arcadeStatus) arcadeStatus.textContent = "Use Arrow Keys to help Abir collect 10 slices of Cake!";
+
+    if (arcadeAudio) {
+        arcadeAudio.currentTime = 0;
+        arcadeAudio.play().catch(err => console.log("Arcade audio play blocked:", err));
+    }
 
     pizzaSlices = [];
     for (let i = 0; i < 12; i++) {
@@ -428,11 +519,15 @@ function updatePacmanGame() {
                 if (scoreEl) scoreEl.textContent = pizzaScore;
 
                 if (pizzaScore >= 10) {
-                    if (arcadeStatus) arcadeStatus.textContent = "🎉 JOEY DOESN'T SHARE FOOD! Level Cleared!";
+                    if (arcadeStatus) arcadeStatus.textContent = "🎉 ABIR DOESN'T SHARE CAKE! Level Cleared!";
                     joey.dx = 0;
                     joey.dy = 0;
                     
                     clearInterval(gameInterval);
+
+                    if (arcadeAudio) {
+                        arcadeAudio.pause();
+                    }
                     
                     setTimeout(() => {
                         arcadeScreen.style.display = "none";
@@ -446,7 +541,7 @@ function updatePacmanGame() {
         }
     });
 
-    ctx.fillStyle = "#2b1a10";
+    ctx.fillStyle = "#e6eaee";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     pizzaSlices.forEach(slice => {
@@ -454,7 +549,7 @@ function updatePacmanGame() {
             ctx.font = "20px Arial";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText("🍕", slice.x, slice.y);
+            ctx.fillText("🍰", slice.x, slice.y);
         }
     });
 
@@ -494,7 +589,7 @@ function setupMicBlowDetection() {
             const micInstruction = document.getElementById("mic-instruction");
             if (micInstruction) {
                 micInstruction.textContent = "🎤 Mic active! Blow into your mic to blow out the candle!";
-                micInstruction.style.color = "#5f7a3a";
+                micInstruction.style.color = "#5f8250";
             }
 
             function detectBlow() {
@@ -773,10 +868,12 @@ function startTypewriterEffect() {
 
         const p = document.createElement("p");
         
-        if (pIndex === letterParagraphs.length - 2) {
-            p.style.cssText = "margin-top: 20px; font-weight: bold; color: #bf4f17; text-align: center;";
+        if (pIndex === letterParagraphs.length - 3) {
+            p.style.cssText = "margin-top: 16px; font-weight: bold; color: #1f3a5a;";
+        } else if (pIndex === letterParagraphs.length - 2) {
+            p.style.cssText = "margin-top: 8px; font-weight: bold; color: #1f3a5a;";
         } else if (pIndex === letterParagraphs.length - 1) {
-            p.style.cssText = "margin-top: 18px; font-style: italic; font-weight: bold; color: #e2672a; text-align: center; font-size: 32px;";
+            p.style.cssText = "margin-top: 18px; font-style: italic; font-weight: bold; color: #d99a14; text-align: center; font-size: 32px;";
             
             if (waitAudio) {
                 waitAudio.currentTime = 0;
