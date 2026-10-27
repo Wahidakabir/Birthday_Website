@@ -73,20 +73,18 @@ const funnyReplies = [
     "I award you zero points. And may God have mercy on your soul."
 ];
 
-// PHOTO MEMORY GALLERY
+
+// PHOTO MEMORY GALLERY in script.js
 const photos = [
-    { src: "images/photo1.jpg", caption: " " },
-    { src: "images/photo2.jpg", caption:" " },
-    { src: "images/photo3.jpg", caption: "" },
+    { src: "images/photo1.jpg", caption: "" },
+    { src: "images/photo2.JPG", caption: "" }, // changed to .JPG
+    { src: "images/photo3.JPG", caption: "" },         // changed to .JPG
     { src: "images/photo4.jpg", caption: "" },
-    { src: "images/photo5.jpg", caption: "" },
     { src: "images/photo6.jpg", caption: "" },
-    { src: "images/photo7.jpg", caption: "" },
-    { src: "images/photo8.jpg", caption: "" },
+    { src: "images/photo7.JPG", caption: "" },     // changed to .JPG
     { src: "images/photo9.jpg", caption: "" },
     { src: "images/photo10.jpg", caption: "" }
 ];
-
 // TYPEWRITER LETTER PARAGRAPHS (YOUR CUSTOM LETTER)
 const letterParagraphs = [
     "Dear Bhaiya,",
